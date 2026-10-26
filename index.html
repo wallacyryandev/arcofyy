@@ -60,17 +60,18 @@ body{grid-template-columns:1fr;grid-template-rows:1fr auto auto;gap:0;padding:0}
 <div id="rt"><button class="dvb" title="Conectar a um aparelho"><svg viewBox="0 0 24 24"><path d="M4 6h18V4H4a2 2 0 00-2 2v11H0v3h14v-3H4zm19 2h-6a1 1 0 00-1 1v10a1 1 0 001 1h6a1 1 0 001-1V9a1 1 0 00-1-1zm-1 9h-4v-7h4z"/></svg></button><svg viewBox="0 0 24 24" style="width:20px"><path d="M3 9v6h4l5 5V4L7 9zm13.500 3A4.500 4.500 0 0014 8v8c1.500-.7 2.500-2.200 2.500-4z"/></svg><input id="vl" type="range" min="0" max="1" step=".01" value="1"></div></footer>
 <nav id="bm"><button data-v="home" class="on"><svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-5h2v5h6v-8h3z"/></svg>Início</button><button data-v="search"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7 14 5 12 5 9.5S7 5 9.5 5 14 7 14 9.5 12 14 9.5 14z"/></svg>Buscar</button><button data-v="lib"><svg viewBox="0 0 24 24"><path d="M20 2H8a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2zm-2 5h-3v5.500a2.500 2.500 0 11-2-2.450V5h5zM4 6H2v14a2 2 0 002 2h14v-2H4z"/></svg>Biblioteca</button><button data-v="cfg"><svg viewBox="0 0 24 24"><path d="M3 17v2h6v-2zM3 5v2h10V5zm10 16v-2h8v-2h-8v-2h-2v6zM7 9v2H3v2h4v2h2V9zm14 4v-2H11v2zm-6-4h2V7h4V5h-4V3h-2z"/></svg>Config</button><button class="dvb"><svg viewBox="0 0 24 24"><path d="M4 6h18V4H4a2 2 0 00-2 2v11H0v3h14v-3H4zm19 2h-6a1 1 0 00-1 1v10a1 1 0 001 1h6a1 1 0 001-1V9a1 1 0 00-1-1zm-1 9h-4v-7h4z"/></svg>Aparelhos</button></nav>
 <input id="fi" type="file" accept="audio/*" multiple hidden>
-<div id="dv"><div><h2>Conectar aparelhos</h2><span class="st" id="stt">Desconectado</span><p>Abra o Arcofy nos dois aparelhos. Em um, toque em Gerar convite e envie o código ao outro. No outro, cole o código, toque em Conectar e devolva o código gerado. Depois de conectados, as músicas dos dois ficam iguais automaticamente, e cada música nova é enviada sozinha.</p>
-<button class="bt" id="go">Gerar convite</button><textarea id="code" readonly placeholder="Seu código aparece aqui"></textarea><button class="bt o" id="cp">Copiar código</button>
-<textarea id="cin" placeholder="Cole aqui o código do outro aparelho"></textarea><button class="bt" id="ok">Conectar</button><button class="bt o" id="x">Fechar</button></div></div>
+<div id="dv"><div><h2>Conectar aparelhos</h2><span class="st" id="stt">Desconectado</span><p>Abra o Arcofy nos dois aparelhos. Em um, toque em Gerar código. No outro, digite os 8 números e toque em Conectar. Depois disso as músicas e o tempo de escuta ficam iguais nos dois, e cada música nova é enviada sozinha.</p>
+<button class="bt" id="go">Gerar código</button><div id="code" style="font-size:34px;font-weight:800;letter-spacing:.12em;margin:10px 0"></div>
+<input id="cin" inputmode="numeric" maxlength="9" placeholder="Digite o código de 8 números" style="width:100%;padding:12px;border-radius:6px;border:1px solid #555;background:#121212;color:#fff;font-size:20px;letter-spacing:.1em;margin:6px 0"><button class="bt" id="ok">Conectar</button><button class="bt o" id="x">Fechar</button></div></div>
 <div id="ts"></div>
+<script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script>
 const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s),A=new Audio(),E=s=>String(s??'').replace(/[&<>"]/g,c=>'&#'+c.charCodeAt()+';');
 const IC={p:'<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>',s:'<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6zm8-14v14h4V5z"/></svg>',n:'<svg viewBox="0 0 24 24"><path d="M12 3v10.600A4 4 0 1014 17V7h4V3z"/></svg>'};
 let T=[],cur=-1,view='home',Q='',sh=0,rp=0,DH=null,ch=null,P=null,RX={},QQ=Promise.resolve();
 let ST={},sd=0,lt=0,AU=1,ME='x';try{AU=localStorage.auto!='0';ME=localStorage.me||(localStorage.me=Math.random().toString(36).slice(2,8))}catch(e){}
 const db=new Promise(r=>{const q=indexedDB.open('playtify',1);q.onupgradeneeded=()=>{q.result.createObjectStore('t',{keyPath:'k'});q.result.createObjectStore('m')};q.onsuccess=()=>r(q.result)});
-const S=async(st,m,f)=>{const d=await db;return new Promise(r=>{const t=d.transaction(st,m),o=f(t.objectStore(st));t.oncomplete=()=>r(o&&o.result)})};
+const S=async(st,m,f)=>{const d=await db;return new Promise((r,j)=>{const t=d.transaction(st,m),o=f(t.objectStore(st));t.oncomplete=()=>r(o&&o.result);t.onerror=t.onabort=()=>j(t.error)})};
 const tm=s=>isFinite(s)&&s>0?Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'):'0:00';
 let tt;const toast=m=>{const e=$('#ts');e.textContent=m;e.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on'),2800)};
 /* tags ID3v2.3/2.4: título, artista, álbum e capa */
@@ -82,13 +83,13 @@ const url=t=>{if(t.cover&&!t.u)t.u=URL.createObjectURL(t.cover)};
 async function put(f){const k=f.name+'|'+f.size;if(T.some(x=>x.k==k))return 0;const g=await tags(f),s=f.name.replace(/\.[^.]+$/,'').replace(/_/g,' ').trim(),m=s.split(/\s+-\s+/);
 const r={k,name:f.name,size:f.size,blob:f,title:g.title||(m.length>1?m.slice(1).join(' - '):s),artist:g.artist||(m.length>1?m[0]:'Artista desconhecido'),album:g.album||'Single',cover:g.cover};
 await S('t','readwrite',s=>s.put(r));url(r);T.push(r);return 1}
-async function addF(fs,sync){let n=0;for(const f of fs)if(/\.(mp3|m4a|flac|ogg|wav|aac|opus)$/i.test(f.name)||f.type.startsWith('audio/'))n+=await put(f);if(n){R();if(sync)man(1)}return n}
+async function addF(fs,sync){let n=0;for(const f of fs)if(/\.(mp3|m4a|flac|ogg|wav|aac|opus)$/i.test(f.name)||f.type.startsWith('audio/'))n+=await put(f).catch(e=>{toast('Erro ao salvar: '+(e&&e.name||e));return 0});if(n){R();if(sync)man(1)}return n}
 /* pasta do aparelho: escolhida uma vez, revarrida sozinha */
 async function walk(d,o){for await(const e of d.values()){if(e.kind=='file')o.push(await e.getFile());else await walk(e,o)}}
 async function scan(){if(!DH)return;const o=[];await walk(DH,o);const n=await addF(o,1);if(n)toast(n+' música(s) nova(s) adicionadas')}
 async function chk(){if(!DH)return;try{if(await DH.queryPermission({mode:'read'})=='granted'){$('#bn').hidden=1;await scan()}else $('#bn').hidden=0}catch(e){}}
-async function pick(){if(window.showDirectoryPicker){try{DH=await showDirectoryPicker();await S('m','readwrite',s=>s.put(DH,'dir'));await scan();return}catch(e){if(e.name=='AbortError')return}}$('#fi').click()}
-$('#fi').onchange=async e=>{const n=await addF([...e.target.files],1);toast(n+' música(s) adicionadas');e.target.value=''};
+async function pick(){if(!window.showDirectoryPicker)return toast('Este navegador não deixa escolher pasta. Toque em Adicionar arquivos.');try{DH=await showDirectoryPicker({id:'arcofy',startIn:'music'});await S('m','readwrite',s=>s.put(DH,'dir'));await scan();toast('Pasta conectada')}catch(e){if(e.name!='AbortError')toast('Não deu para usar essa pasta ('+e.name+'). Use uma pasta só de músicas, fora de Downloads, ou toque em Adicionar arquivos.')}}
+$('#fi').onchange=async e=>{const n=await addF([...e.target.files],1);toast(n?n+' música(s) adicionadas':'Nenhuma música nova (já adicionadas ou formato não suportado)');e.target.value=''};
 $('#b1').onclick=pick;$('#bn').onclick=async()=>{if(await DH.requestPermission({mode:'read'})=='granted'){$('#bn').hidden=1;scan()}};
 setInterval(()=>{if(!document.hidden&&AU)chk()},60000);document.addEventListener('visibilitychange',()=>!document.hidden&&chk());
 /* player */
@@ -118,7 +119,7 @@ function cfg(){const td=day(),mo=td.slice(0,7),top={};for(const c in ST){const k
 const tp=Object.entries(top).sort((a,b)=>b[1]-a[1]).slice(0,5),mi=s=>Math.floor(s/60)+' min',bx=(a,b)=>`<div class="cd"><small>${a}</small><b style="font-size:24px">${b}</b></div>`;
 return `<div class="pd"><h1>Configurações</h1><h2>Estatísticas de escuta</h2><div class="qk" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">${bx('Hoje',mi(sum(d=>d==td)))}${bx('Este mês',mi(sum(d=>d.startsWith(mo))))}${bx('Total',mi(sum(()=>1)))}</div>
 ${tp.length?'<h2>Mais ouvidas</h2>'+tp.map(([k,s])=>{const t=T.find(x=>x.k==k);return t?`<div class="cr"><div style="display:flex;gap:12px;align-items:center;min-width:0">${cv(t)}<div style="min-width:0"><b>${E(t.title)}</b><small style="color:var(--t2)">${E(t.artist)}</small></div></div><span style="color:var(--t2)">${mi(s)}</span></div>`:''}).join(''):''}
-<h2>Biblioteca</h2>${sr('Pasta de músicas','Escolha uma vez; o Arcofy acha as novas sozinho','<button class="bt o" onclick="pick()">Escolher</button>')}${sr('Buscar músicas novas agora',T.length+' músicas neste aparelho','<button class="bt o" onclick="chk().then(()=>toast(\'Busca concluída\'))">Buscar</button>')}${sr('Busca automática','Procura músicas novas a cada minuto',tg('auto',AU))}
+<h2>Biblioteca</h2>${sr('Pasta de músicas','Escolha uma vez; o Arcofy acha as novas sozinho','<button class="bt o" onclick="pick()">Escolher</button><label class="bt o" for="fi" style="cursor:pointer;margin-left:6px">Arquivos</label>')}${sr('Buscar músicas novas agora',T.length+' músicas neste aparelho','<button class="bt o" onclick="chk().then(()=>toast(\'Busca concluída\'))">Buscar</button>')}${sr('Busca automática','Procura músicas novas a cada minuto',tg('auto',AU))}
 <h2>Reprodução</h2>${sr('Aleatório','Toca as músicas em ordem aleatória',tg('sh',sh))}${sr('Repetir','Repete a música atual',tg('rp',rp))}
 <h2>Aparelhos</h2>${sr('Conectar aparelho','Sincroniza músicas e tempo de escuta','<button class="bt o dvb">Conectar</button>')}
 <h2>Sobre</h2>${sr('Arcofy','Versão 1.0','')}</div>`}
@@ -126,7 +127,7 @@ function R(){
 $$('[data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v==view));
 $('#ll').innerHTML=T.map((t,i)=>`<button class="li ${i==cur?'on':''}" onclick="play(${i})">${cv(t)}<div style="min-width:0"><b>${E(t.title)}</b><small>${E(t.artist)}</small></div></button>`).join('');
 let h='';
-if(!T.length&&view!='cfg')h=`<div class="em"><h2>Suas músicas aparecem aqui</h2><p>Escolha a pasta de músicas do aparelho uma única vez. Daqui em diante o Arcofy encontra as músicas novas sozinho.</p><button class="bt" onclick="pick()">Escolher pasta de músicas</button><button class="bt o dvb">Conectar outro aparelho</button></div>`;
+if(!T.length&&view!='cfg')h=`<div class="em"><h2>Suas músicas aparecem aqui</h2><p>Escolha a pasta de músicas do aparelho uma única vez. Daqui em diante o Arcofy encontra as músicas novas sozinho.</p><button class="bt" onclick="pick()">Escolher pasta de músicas</button><label class="bt o" for="fi" style="cursor:pointer">Adicionar arquivos</label><button class="bt o dvb">Conectar outro aparelho</button></div>`;
 else if(view=='home'){const hr=new Date().getHours();h=`<div class="pd"><h1>${hr<12?'Bom dia':hr<18?'Boa tarde':'Boa noite'}</h1><div class="qk">${T.slice(0,8).map((t,i)=>`<button onclick="play(${i})">${cv(t)}${E(t.title)}</button>`).join('')}</div>
 <h2>Álbuns</h2><div class="sh">${grp('album').map(g=>card(g,'album')).join('')}</div><h2>Artistas</h2><div class="sh">${grp('artist').map(g=>card(g,'artist')).join('')}</div><h2>Todas as músicas</h2>${list(T)}</div>`}
 else if(view=='search')h=`<div class="pd"><div class="sr"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7 14 5 12 5 9.5S7 5 9.5 5 14 7 14 9.5 12 14 9.5 14z"/></svg><input id="q" placeholder="O que você quer ouvir?" value="${E(Q)}" oninput="Q=this.value;res()"></div><div id="rs"></div></div>`;
@@ -141,7 +142,7 @@ const gath=()=>new Promise(r=>{if(P.iceGatheringState=='complete')r();else{P.oni
 function mk(){P=new RTCPeerConnection({iceServers:[{urls:'stun:stun.l.google.com:19302'}]});P.ondatachannel=e=>setCh(e.channel);P.onconnectionstatechange=()=>{if(P.connectionState=='failed'||P.connectionState=='disconnected')st('Desconectado')}}
 $('#go').onclick=async()=>{mk();setCh(P.createDataChannel('m'));await P.setLocalDescription(await P.createOffer());st('Gerando…');await gath();$('#code').value=en(P.localDescription);st('Aguardando o outro aparelho')};
 $('#ok').onclick=async()=>{try{const d=de($('#cin').value);if(d.type=='offer'){mk();await P.setRemoteDescription(d);await P.setLocalDescription(await P.createAnswer());await gath();$('#code').value=en(P.localDescription);st('Devolva o código ao outro aparelho')}else await P.setRemoteDescription(d)}catch(e){toast('Código inválido')}};
-$('#cp').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText($('#code').value);$('#code').select();toast('Código copiado')};
+
 function setCh(c){ch=c;c.binaryType='arraybuffer';c.onopen=()=>{st('Conectado');toast('Aparelho conectado');man(1);c.send(JSON.stringify({t:'s',c:ST}))};c.onclose=()=>st('Desconectado');c.onmessage=onMsg}
 const man=r=>{if(ch&&ch.readyState=='open')ch.send(JSON.stringify({t:'m',i:T.map(x=>x.k),r}))};
 async function onMsg(e){const d=e.data;
@@ -156,6 +157,12 @@ for(let o=0;o<x.size;o+=16000){while(ch.bufferedAmount>5e5)await new Promise(r=>
 ch.send(JSON.stringify({t:'e',id}))}}
 function bindD(){$$('.dvb').forEach(b=>b.onclick=()=>$('#dv').classList.add('on'))}
 $('#x').onclick=()=>$('#dv').classList.remove('on');
+/* pareamento por código de 8 números (broker público PeerJS) */
+let PR=null;
+function wrap(c){const a={get readyState(){return c.open?'open':'closed'},get bufferedAmount(){return c.dataChannel?c.dataChannel.bufferedAmount:0},send:d=>c.send(d)};c.on('open',()=>a.onopen&&a.onopen());c.on('close',()=>a.onclose&&a.onclose());c.on('data',d=>a.onmessage&&a.onmessage({data:d}));if(c.open)setTimeout(()=>a.onopen&&a.onopen());return a}
+function peer(id){return new Promise((ok,no)=>{if(typeof Peer=='undefined'){st('Sem acesso ao serviço de pareamento');return no('x')}if(PR)PR.destroy();PR=new Peer(...(id?[id]:[]),{config:{iceServers:[{urls:'stun:stun.l.google.com:19302'}]}});PR.on('open',()=>ok(PR));PR.on('error',e=>{st(e.type=='peer-unavailable'?'Código não encontrado':'Erro: '+e.type);no(e)});PR.on('connection',c=>setCh(wrap(c)))})}
+$('#go').onclick=async()=>{const n=String(Math.floor(Math.random()*1e8)).padStart(8,'0');st('Criando código…');try{await peer('arcofy-'+n);$('#code').textContent=n.replace(/(\d{4})(\d{4})/,'$1 $2');st('Aguardando o outro aparelho')}catch(e){}};
+$('#ok').onclick=async()=>{const n=$('#cin').value.replace(/\D/g,'');if(n.length!=8)return toast('Digite os 8 números');st('Conectando…');try{const p=await peer(null),c=p.connect('arcofy-'+n,{serialization:'raw',reliable:true});setCh(wrap(c));setTimeout(()=>{if(!c.open)st('Não consegui conectar')},12000)}catch(e){}};
 /* início */
 (async()=>{T=await S('t','readonly',s=>s.getAll())||[];ST=await S('m','readonly',s=>s.get('stats'))||{};T.forEach(url);R();bar();DH=await S('m','readonly',s=>s.get('dir'));chk()})();
 </script></body></html>
