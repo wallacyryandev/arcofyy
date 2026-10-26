@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Arcofy</title>
+<style>
+:root{--bg:#000;--el:#121212;--hi:#1a1a1a;--hv:#2a2a2a;--tx:#fff;--t2:#b3b3b3;--g:#1ed760;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}html,body{height:100%}
+body{background:var(--bg);color:var(--tx);font:14px/1.4 "Circular Std","Segoe UI",Helvetica,Arial,sans-serif;display:grid;grid-template-columns:300px 1fr;grid-template-rows:1fr 90px;gap:8px;padding:8px;overflow:hidden}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}svg{width:24px;height:24px;fill:currentColor;flex:none}
+.pn{background:var(--el);border-radius:8px;overflow:auto;min-height:0}
+#sb{display:flex;flex-direction:column;gap:8px;background:none;overflow:hidden}
+.nav{padding:12px 20px;display:flex;flex-direction:column;gap:4px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:22px;margin:4px 0 14px}.logo i{width:32px;height:32px;border-radius:50%;background:var(--g);color:#000;display:grid;place-items:center}
+.nv{display:flex;gap:16px;align-items:center;padding:8px 0;font-weight:700;color:var(--t2);font-size:15px}.nv:hover,.nv.on{color:#fff}
+#lb{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.lh{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 8px;font-weight:700;color:var(--t2)}.lh button{padding:6px;border-radius:50%}.lh button:hover{background:var(--hv);color:#fff}
+#ll{overflow:auto;padding:0 8px 8px}
+.li{display:flex;gap:12px;align-items:center;padding:8px;border-radius:6px;cursor:pointer;width:100%;text-align:left}.li:hover{background:var(--hv)}
+.cv{width:48px;height:48px;border-radius:4px;background:#333 center/cover;flex:none;display:grid;place-items:center;color:#777}
+.li b,.rw b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}.li small,.rw small{color:var(--t2);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.on b,.on.rw .tt{color:var(--g)}
+#mn{background:linear-gradient(#40407a99,var(--el) 340px)}
+#bn{margin:16px 24px 0;padding:12px 16px;background:var(--g);color:#000;font-weight:700;border-radius:8px;display:block}
+.pd{padding:20px 24px 24px}h1{font-size:30px;margin:12px 0 18px}h2{font-size:24px;margin:28px 0 14px}
+.qk{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}.qk button{display:flex;align-items:center;gap:12px;background:#ffffff1a;border-radius:4px;overflow:hidden;text-align:left;font-weight:700;padding-right:8px}.qk button:hover{background:#ffffff33}.qk .cv{width:64px;height:64px;border-radius:0}
+.sh{display:grid;grid-auto-flow:column;grid-auto-columns:176px;gap:16px;overflow-x:auto;padding-bottom:6px}
+.cd{padding:12px;border-radius:8px;background:var(--hi);text-align:left;transition:.2s}.cd:hover{background:var(--hv)}.cd .cv{width:100%;aspect-ratio:1;height:auto;border-radius:6px;margin-bottom:12px;box-shadow:0 8px 24px #0008}.cd.ar .cv{border-radius:50%}.cd b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cd small{color:var(--t2)}
+.rw{display:grid;grid-template-columns:32px 1fr 1fr;gap:16px;align-items:center;padding:6px 12px;border-radius:4px;width:100%;text-align:left;color:var(--t2)}.rw:hover{background:#ffffff1a}.rw .nn{text-align:center}.rw .tt{display:flex;gap:12px;align-items:center;min-width:0;color:#fff}.rw .tt .cv{width:40px;height:40px}.rw .tt div{min-width:0}.rw:hover .nn span{display:none}.nn svg{display:none;width:18px;color:#fff;margin:auto}.rw:hover .nn svg{display:block}
+.hd{display:grid;grid-template-columns:32px 1fr 1fr;gap:16px;padding:0 12px 8px;border-bottom:1px solid #ffffff1a;color:var(--t2);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.sr{position:relative;max-width:360px}.sr svg{position:absolute;left:12px;top:10px;color:#000}.sr input{width:100%;padding:12px 16px 12px 44px;border-radius:500px;border:0;background:#fff;color:#000;font:inherit;font-size:15px}
+.em{text-align:center;color:var(--t2);padding:60px 20px}.em h2{color:#fff}.bt{background:var(--g);color:#000;font-weight:700;padding:12px 28px;border-radius:500px;margin:6px;display:inline-block}.bt:hover{transform:scale(1.04)}.bt.o{background:none;color:#fff;border:1px solid #888}
+#pl{grid-column:1/-1;display:grid;grid-template-columns:1fr 2fr 1fr;align-items:center;padding:0 8px}
+#np{display:flex;gap:14px;align-items:center;min-width:0}#np .cv{width:56px;height:56px}#np div{min-width:0}
+#ct{display:flex;flex-direction:column;align-items:center;gap:8px}.bs{display:flex;gap:16px;align-items:center}.bs button{color:var(--t2);padding:4px}.bs button:hover,.bs .a{color:#fff}.bs .a{color:var(--g)}.bs #pp{background:#fff;color:#000;border-radius:50%;width:34px;height:34px;display:grid;place-items:center;padding:0}.bs #pp:hover{transform:scale(1.06)}
+.pr{display:flex;gap:8px;align-items:center;width:100%;max-width:620px;color:var(--t2);font-size:12px}.pr span{width:38px;text-align:center}
+input[type=range]{-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;background:linear-gradient(to right,#fff var(--p,0%),#4d4d4d 0);flex:1;cursor:pointer;outline:0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:#fff;opacity:0}input[type=range]:hover::-webkit-slider-thumb{opacity:1}input[type=range]:hover{background:linear-gradient(to right,var(--g) var(--p,0%),#4d4d4d 0)}
+#rt{display:flex;justify-content:flex-end;gap:8px;align-items:center;color:var(--t2)}#rt input{max-width:100px;flex:none;width:100px}#rt button{padding:6px}#rt button:hover,#rt .a{color:var(--g)}
+#dv{position:fixed;inset:0;background:#000a;display:none;place-items:center;z-index:9;padding:16px}#dv.on{display:grid}
+#dv>div{background:#282828;border-radius:10px;padding:24px;width:min(520px,100%);max-height:90%;overflow:auto}#dv h2{margin:0 0 8px}#dv p{color:var(--t2);margin-bottom:12px}
+#dv textarea{width:100%;height:80px;background:#121212;color:#fff;border:1px solid #555;border-radius:6px;padding:8px;font:11px monospace;margin:6px 0;resize:none}
+.st{display:inline-block;padding:3px 10px;border-radius:99px;background:#333;font-size:12px;margin-bottom:10px}.st.ok{background:var(--g);color:#000}
+#ts{position:fixed;left:50%;bottom:110px;transform:translateX(-50%);background:#fff;color:#000;font-weight:600;padding:10px 18px;border-radius:6px;opacity:0;transition:.3s;pointer-events:none;z-index:10}#ts.on{opacity:1}
+#bm{display:none}
+.cr{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #ffffff14}.cr small{display:block}.cr .bt{margin:0;padding:8px 20px}
+.tg{width:42px;height:22px;border-radius:11px;background:#535353;position:relative;flex:none}.tg.on{background:var(--g)}.tg::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.15s}.tg.on::after{left:22px}
+@media(min-width:801px) and (max-width:1100px){body{grid-template-columns:240px 1fr}.sh{grid-auto-columns:150px}#rt input{width:70px}}
+@media(max-width:800px){
+body{grid-template-columns:1fr;grid-template-rows:1fr auto auto;gap:0;padding:0}#sb{display:none}.pn{border-radius:0}
+#pl{grid-template-columns:1fr auto;grid-row:2;background:#2a2a45;margin:0 8px;border-radius:8px;padding:8px;height:64px;position:relative}#ct{display:contents}.pr,.bs button:not(#pp){display:none}.bs{order:2}#rt{display:none}#np .cv{width:48px;height:48px}
+#pl::after{content:"";position:absolute;left:10px;right:10px;bottom:0;height:2px;background:linear-gradient(to right,#fff var(--pp,0%),#fff3 0)}
+#bm{display:flex;grid-row:3;justify-content:space-around;padding:10px 0;background:linear-gradient(#0000,#000 30%)}#bm button{display:flex;flex-direction:column;align-items:center;font-size:11px;color:var(--t2)}#bm .on{color:#fff}
+.rw,.hd{grid-template-columns:32px 1fr}.rw>:nth-child(3),.hd>:nth-child(3){display:none}.sh{grid-auto-columns:140px}#ts{bottom:150px}.qk{grid-template-columns:1fr 1fr}.pd{padding:16px}h1{font-size:24px}#bm button{font-size:10px}.cr .bt{padding:8px 14px}}
+</style></head><body>
+<aside id="sb" class="pn"><div class="pn nav"><div class="logo"><i><svg viewBox="0 0 24 24" style="width:20px"><path d="M3 18a9 9 0 0118 0h-3a6 6 0 00-12 0z"/><circle cx="12" cy="18" r="2"/></svg></i>Arcofy</div>
+<button class="nv" data-v="home"><svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-5h2v5h6v-8h3z"/></svg>Início</button>
+<button class="nv" data-v="search"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7 14 5 12 5 9.5S7 5 9.5 5 14 7 14 9.5 12 14 9.5 14z"/></svg>Buscar</button><button class="nv" data-v="cfg"><svg viewBox="0 0 24 24"><path d="M3 17v2h6v-2zM3 5v2h10V5zm10 16v-2h8v-2h-8v-2h-2v6zM7 9v2H3v2h4v2h2V9zm14 4v-2H11v2zm-6-4h2V7h4V5h-4V3h-2z"/></svg>Configurações</button></div>
+<div id="lb" class="pn"><div class="lh"><span>Sua Biblioteca</span><span><button id="b1" title="Escolher pasta de músicas"><svg viewBox="0 0 24 24"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8z"/></svg></button><button class="dvb" title="Aparelhos"><svg viewBox="0 0 24 24"><path d="M4 6h18V4H4a2 2 0 00-2 2v11H0v3h14v-3H4zm19 2h-6a1 1 0 00-1 1v10a1 1 0 001 1h6a1 1 0 001-1V9a1 1 0 00-1-1zm-1 9h-4v-7h4z"/></svg></button></span></div><div id="ll"></div></div></aside>
+<main id="mn" class="pn"><button id="bn" hidden>Toque aqui para reativar o acesso à sua pasta de músicas</button><div id="vw"></div></main>
+<footer id="pl" class="pn" style="background:#000"><div id="np"></div>
+<div id="ct"><div class="bs"><button id="sh"><svg viewBox="0 0 24 24"><path d="M10.6 9.2L5.4 4 4 5.4l5.2 5.2zM14.5 4l2 2L4 18.6 5.4 20 18 7.5l2 2V4zm.3 9.4l-1.4 1.4 3.1 3.1-2 2h5.5v-5.500l-2 2z"/></svg></button><button id="pv"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.500 6V6z"/></svg></button><button id="pp"></button><button id="nx"><svg viewBox="0 0 24 24"><path d="M6 18l8.500-6L6 6zM16 6v12h2V6z"/></svg></button><button id="rp"><svg viewBox="0 0 24 24"><path d="M7 7h10v3l4-4-4-4v3H5v6h2zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2z"/></svg></button></div>
+<div class="pr"><span id="c">0:00</span><input id="sk" type="range" min="0" max="100" step=".1" value="0"><span id="d">0:00</span></div></div>
+<div id="rt"><button class="dvb" title="Conectar a um aparelho"><svg viewBox="0 0 24 24"><path d="M4 6h18V4H4a2 2 0 00-2 2v11H0v3h14v-3H4zm19 2h-6a1 1 0 00-1 1v10a1 1 0 001 1h6a1 1 0 001-1V9a1 1 0 00-1-1zm-1 9h-4v-7h4z"/></svg></button><svg viewBox="0 0 24 24" style="width:20px"><path d="M3 9v6h4l5 5V4L7 9zm13.500 3A4.500 4.500 0 0014 8v8c1.500-.7 2.500-2.200 2.500-4z"/></svg><input id="vl" type="range" min="0" max="1" step=".01" value="1"></div></footer>
+<nav id="bm"><button data-v="home" class="on"><svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-5h2v5h6v-8h3z"/></svg>Início</button><button data-v="search"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7 14 5 12 5 9.5S7 5 9.5 5 14 7 14 9.5 12 14 9.5 14z"/></svg>Buscar</button><button data-v="lib"><svg viewBox="0 0 24 24"><path d="M20 2H8a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2zm-2 5h-3v5.500a2.500 2.500 0 11-2-2.450V5h5zM4 6H2v14a2 2 0 002 2h14v-2H4z"/></svg>Biblioteca</button><button data-v="cfg"><svg viewBox="0 0 24 24"><path d="M3 17v2h6v-2zM3 5v2h10V5zm10 16v-2h8v-2h-8v-2h-2v6zM7 9v2H3v2h4v2h2V9zm14 4v-2H11v2zm-6-4h2V7h4V5h-4V3h-2z"/></svg>Config</button><button class="dvb"><svg viewBox="0 0 24 24"><path d="M4 6h18V4H4a2 2 0 00-2 2v11H0v3h14v-3H4zm19 2h-6a1 1 0 00-1 1v10a1 1 0 001 1h6a1 1 0 001-1V9a1 1 0 00-1-1zm-1 9h-4v-7h4z"/></svg>Aparelhos</button></nav>
+<input id="fi" type="file" accept="audio/*" multiple hidden>
+<div id="dv"><div><h2>Conectar aparelhos</h2><span class="st" id="stt">Desconectado</span><p>Abra o Arcofy nos dois aparelhos. Em um, toque em Gerar convite e envie o código ao outro. No outro, cole o código, toque em Conectar e devolva o código gerado. Depois de conectados, as músicas dos dois ficam iguais automaticamente, e cada música nova é enviada sozinha.</p>
+<button class="bt" id="go">Gerar convite</button><textarea id="code" readonly placeholder="Seu código aparece aqui"></textarea><button class="bt o" id="cp">Copiar código</button>
+<textarea id="cin" placeholder="Cole aqui o código do outro aparelho"></textarea><button class="bt" id="ok">Conectar</button><button class="bt o" id="x">Fechar</button></div></div>
+<div id="ts"></div>
+<script>
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s),A=new Audio(),E=s=>String(s??'').replace(/[&<>"]/g,c=>'&#'+c.charCodeAt()+';');
+const IC={p:'<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>',s:'<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6zm8-14v14h4V5z"/></svg>',n:'<svg viewBox="0 0 24 24"><path d="M12 3v10.600A4 4 0 1014 17V7h4V3z"/></svg>'};
+let T=[],cur=-1,view='home',Q='',sh=0,rp=0,DH=null,ch=null,P=null,RX={},QQ=Promise.resolve();
+let ST={},sd=0,lt=0,AU=1,ME='x';try{AU=localStorage.auto!='0';ME=localStorage.me||(localStorage.me=Math.random().toString(36).slice(2,8))}catch(e){}
+const db=new Promise(r=>{const q=indexedDB.open('playtify',1);q.onupgradeneeded=()=>{q.result.createObjectStore('t',{keyPath:'k'});q.result.createObjectStore('m')};q.onsuccess=()=>r(q.result)});
+const S=async(st,m,f)=>{const d=await db;return new Promise(r=>{const t=d.transaction(st,m),o=f(t.objectStore(st));t.oncomplete=()=>r(o&&o.result)})};
+const tm=s=>isFinite(s)&&s>0?Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'):'0:00';
+let tt;const toast=m=>{const e=$('#ts');e.textContent=m;e.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on'),2800)};
+/* tags ID3v2.3/2.4: título, artista, álbum e capa */
+async function tags(f){const o={};try{const b=new Uint8Array(await f.slice(0,800000).arrayBuffer());if(String.fromCharCode(b[0],b[1],b[2])!='ID3')return o;const v=b[3],end=Math.min(((b[6]<<21)|(b[7]<<14)|(b[8]<<7)|b[9])+10,b.length-10),dv=new DataView(b.buffer);let p=10;
+const dc=a=>new TextDecoder(a[0]==1?'utf-16':a[0]==2?'utf-16be':a[0]==3?'utf-8':'iso-8859-1').decode(a.slice(1)).replace(/\0/g,'');
+while(p<end){const id=String.fromCharCode(...b.slice(p,p+4));if(!/^[A-Z0-9]{4}$/.test(id))break;const n=v==4?(b[p+4]<<21)|(b[p+5]<<14)|(b[p+6]<<7)|b[p+7]:dv.getUint32(p+4),d=b.slice(p+10,p+10+n);
+if(id=='TIT2')o.title=dc(d);else if(id=='TPE1')o.artist=dc(d);else if(id=='TALB')o.album=dc(d);else if(id=='APIC'&&!o.cover){let i=1;while(d[i])i++;i+=2;if(d[0]==1||d[0]==2){while(d[i]||d[i+1])i+=2;i+=2}else{while(d[i])i++;i++}o.cover=new Blob([d.slice(i)])}p+=10+n}}catch(e){}return o}
+const url=t=>{if(t.cover&&!t.u)t.u=URL.createObjectURL(t.cover)};
+async function put(f){const k=f.name+'|'+f.size;if(T.some(x=>x.k==k))return 0;const g=await tags(f),s=f.name.replace(/\.[^.]+$/,'').replace(/_/g,' ').trim(),m=s.split(/\s+-\s+/);
+const r={k,name:f.name,size:f.size,blob:f,title:g.title||(m.length>1?m.slice(1).join(' - '):s),artist:g.artist||(m.length>1?m[0]:'Artista desconhecido'),album:g.album||'Single',cover:g.cover};
+await S('t','readwrite',s=>s.put(r));url(r);T.push(r);return 1}
+async function addF(fs,sync){let n=0;for(const f of fs)if(/\.(mp3|m4a|flac|ogg|wav|aac|opus)$/i.test(f.name)||f.type.startsWith('audio/'))n+=await put(f);if(n){R();if(sync)man(1)}return n}
+/* pasta do aparelho: escolhida uma vez, revarrida sozinha */
+async function walk(d,o){for await(const e of d.values()){if(e.kind=='file')o.push(await e.getFile());else await walk(e,o)}}
+async function scan(){if(!DH)return;const o=[];await walk(DH,o);const n=await addF(o,1);if(n)toast(n+' música(s) nova(s) adicionadas')}
+async function chk(){if(!DH)return;try{if(await DH.queryPermission({mode:'read'})=='granted'){$('#bn').hidden=1;await scan()}else $('#bn').hidden=0}catch(e){}}
+async function pick(){if(window.showDirectoryPicker){try{DH=await showDirectoryPicker();await S('m','readwrite',s=>s.put(DH,'dir'));await scan();return}catch(e){if(e.name=='AbortError')return}}$('#fi').click()}
+$('#fi').onchange=async e=>{const n=await addF([...e.target.files],1);toast(n+' música(s) adicionadas');e.target.value=''};
+$('#b1').onclick=pick;$('#bn').onclick=async()=>{if(await DH.requestPermission({mode:'read'})=='granted'){$('#bn').hidden=1;scan()}};
+setInterval(()=>{if(!document.hidden&&AU)chk()},60000);document.addEventListener('visibilitychange',()=>!document.hidden&&chk());
+/* player */
+const cv=t=>`<div class="cv" style="${t&&t.u?`background-image:url(${t.u})`:''}">${t&&t.u?'':IC.n}</div>`;
+function play(i){if(!T[i])return;cur=i;const t=T[i];if(A.src)URL.revokeObjectURL(A.src);A.src=URL.createObjectURL(t.blob);A.play().catch(()=>{});R();bar();
+if('mediaSession'in navigator){navigator.mediaSession.metadata=new MediaMetadata({title:t.title,artist:t.artist,album:t.album,artwork:t.u?[{src:t.u}]:[]});navigator.mediaSession.setActionHandler('nexttrack',nx);navigator.mediaSession.setActionHandler('previoustrack',pv)}}
+const nx=()=>{if(!T.length)return;play(sh?Math.random()*T.length|0:(cur+1)%T.length)},pv=()=>{if(A.currentTime>3)A.currentTime=0;else if(T.length)play((cur-1+T.length)%T.length)};
+function bar(){const t=T[cur];$('#np').innerHTML=t?`${cv(t)}<div><b>${E(t.title)}</b><small style="color:var(--t2)">${E(t.artist)}</small></div>`:'';$('#pp').innerHTML=A.paused?IC.p:IC.s;$('#sh').classList.toggle('a',!!sh);$('#rp').classList.toggle('a',!!rp)}
+$('#pp').onclick=()=>{if(cur<0)T.length&&play(0);else A.paused?A.play():A.pause()};$('#nx').onclick=nx;$('#pv').onclick=pv;
+$('#sh').onclick=()=>{sh=!sh;bar()};$('#rp').onclick=()=>{rp=!rp;bar()};
+A.onplay=A.onpause=bar;A.onended=()=>rp?(A.currentTime=0,A.play()):nx();
+A.ontimeupdate=()=>{const n=A.currentTime;if(!A.paused&&T[cur]&&n>lt&&n-lt<1.5)ls(T[cur].k,n-lt);lt=n;const p=A.duration?A.currentTime/A.duration*100:0;$('#c').textContent=tm(A.currentTime);$('#d').textContent=tm(A.duration);$('#sk').value=p;$('#sk').style.setProperty('--p',p+'%');$('#pl').style.setProperty('--pp',p+'%')};
+$('#sk').oninput=e=>{if(A.duration)A.currentTime=e.target.value/100*A.duration};
+$('#vl').oninput=e=>{A.volume=+e.target.value;e.target.style.setProperty('--p',e.target.value*100+'%')};
+/* telas */
+const row=(t,i,n)=>`<button class="rw ${i==cur?'on':''}" onclick="play(${i})"><div class="nn"><span>${i==cur&&!A.paused?'♪':n}</span>${IC.p}</div><div class="tt">${cv(t)}<div><b class="tt">${E(t.title)}</b><small>${E(t.artist)}</small></div></div><small>${E(t.album)}</small></button>`;
+const list=a=>`<div class="hd"><span>#</span><span>Título</span><span>Álbum</span></div>`+a.map((t,n)=>row(t,T.indexOf(t),n+1)).join('');
+const grp=k=>{const m={};T.forEach((t,i)=>(m[t[k]]=m[t[k]]||[]).push(i));return Object.entries(m)};
+const card=(g,k)=>`<button class="cd ${k=='artist'?'ar':''}" onclick="play(${g[1][0]})">${cv(T[g[1][0]])}<b>${E(g[0])}</b><small>${k=='artist'?'Artista':E(T[g[1][0]].artist)}</small></button>`;
+/* estatísticas: segundos realmente ouvidos por aparelho|dia|música; mescla pelo MÁXIMO de cada célula */
+const day=()=>new Date().toISOString().slice(0,10);
+function ls(k,x){const c=ME+'|'+day()+'|'+k;ST[c]=(ST[c]||0)+x;if(!sd){sd=1;setTimeout(()=>{sd=0;S('m','readwrite',s=>s.put(ST,'stats'));if(ch&&ch.readyState=='open')ch.send(JSON.stringify({t:'s',c:ST}))},5000)}}
+const sum=f=>{let t=0;for(const c in ST)if(f(c.split('|')[1]))t+=ST[c];return t};
+const tg=(k,v)=>`<button class="tg ${v?'on':''}" onclick="tgl('${k}')"></button>`,sr=(a,b,c)=>`<div class="cr"><div><b>${a}</b><small style="color:var(--t2)">${b}</small></div>${c}</div>`;
+const tgl=k=>{if(k=='auto'){AU=!AU;try{localStorage.auto=AU?1:0}catch(e){}}else if(k=='sh')sh=!sh;else rp=!rp;bar();R()};
+function cfg(){const td=day(),mo=td.slice(0,7),top={};for(const c in ST){const k=c.split('|')[2];top[k]=(top[k]||0)+ST[c]}
+const tp=Object.entries(top).sort((a,b)=>b[1]-a[1]).slice(0,5),mi=s=>Math.floor(s/60)+' min',bx=(a,b)=>`<div class="cd"><small>${a}</small><b style="font-size:24px">${b}</b></div>`;
+return `<div class="pd"><h1>Configurações</h1><h2>Estatísticas de escuta</h2><div class="qk" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">${bx('Hoje',mi(sum(d=>d==td)))}${bx('Este mês',mi(sum(d=>d.startsWith(mo))))}${bx('Total',mi(sum(()=>1)))}</div>
+${tp.length?'<h2>Mais ouvidas</h2>'+tp.map(([k,s])=>{const t=T.find(x=>x.k==k);return t?`<div class="cr"><div style="display:flex;gap:12px;align-items:center;min-width:0">${cv(t)}<div style="min-width:0"><b>${E(t.title)}</b><small style="color:var(--t2)">${E(t.artist)}</small></div></div><span style="color:var(--t2)">${mi(s)}</span></div>`:''}).join(''):''}
+<h2>Biblioteca</h2>${sr('Pasta de músicas','Escolha uma vez; o Arcofy acha as novas sozinho','<button class="bt o" onclick="pick()">Escolher</button>')}${sr('Buscar músicas novas agora',T.length+' músicas neste aparelho','<button class="bt o" onclick="chk().then(()=>toast(\'Busca concluída\'))">Buscar</button>')}${sr('Busca automática','Procura músicas novas a cada minuto',tg('auto',AU))}
+<h2>Reprodução</h2>${sr('Aleatório','Toca as músicas em ordem aleatória',tg('sh',sh))}${sr('Repetir','Repete a música atual',tg('rp',rp))}
+<h2>Aparelhos</h2>${sr('Conectar aparelho','Sincroniza músicas e tempo de escuta','<button class="bt o dvb">Conectar</button>')}
+<h2>Sobre</h2>${sr('Arcofy','Versão 1.0','')}</div>`}
+function R(){
+$$('[data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v==view));
+$('#ll').innerHTML=T.map((t,i)=>`<button class="li ${i==cur?'on':''}" onclick="play(${i})">${cv(t)}<div style="min-width:0"><b>${E(t.title)}</b><small>${E(t.artist)}</small></div></button>`).join('');
+let h='';
+if(!T.length&&view!='cfg')h=`<div class="em"><h2>Suas músicas aparecem aqui</h2><p>Escolha a pasta de músicas do aparelho uma única vez. Daqui em diante o Arcofy encontra as músicas novas sozinho.</p><button class="bt" onclick="pick()">Escolher pasta de músicas</button><button class="bt o dvb">Conectar outro aparelho</button></div>`;
+else if(view=='home'){const hr=new Date().getHours();h=`<div class="pd"><h1>${hr<12?'Bom dia':hr<18?'Boa tarde':'Boa noite'}</h1><div class="qk">${T.slice(0,8).map((t,i)=>`<button onclick="play(${i})">${cv(t)}${E(t.title)}</button>`).join('')}</div>
+<h2>Álbuns</h2><div class="sh">${grp('album').map(g=>card(g,'album')).join('')}</div><h2>Artistas</h2><div class="sh">${grp('artist').map(g=>card(g,'artist')).join('')}</div><h2>Todas as músicas</h2>${list(T)}</div>`}
+else if(view=='search')h=`<div class="pd"><div class="sr"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7 14 5 12 5 9.5S7 5 9.5 5 14 7 14 9.5 12 14 9.5 14z"/></svg><input id="q" placeholder="O que você quer ouvir?" value="${E(Q)}" oninput="Q=this.value;res()"></div><div id="rs"></div></div>`;
+else if(view=='cfg')h=cfg();else h=`<div class="pd"><h1>Sua Biblioteca</h1>${list(T)}</div>`;
+$('#vw').innerHTML=h;if(view=='search')res();bindD()}
+function res(){const q=Q.toLowerCase(),a=T.filter(t=>(t.title+t.artist+t.album).toLowerCase().includes(q));$('#rs').innerHTML=q?(a.length?'<h2>Músicas</h2>'+list(a):'<div class="em">Nenhum resultado para “'+E(Q)+'”</div>'):list(T)}
+$$('[data-v]').forEach(b=>b.onclick=()=>{view=b.dataset.v;$('#mn').scrollTop=0;R()});
+/* sincronização entre aparelhos (WebRTC direto, sem servidor) */
+const en=d=>btoa(unescape(encodeURIComponent(JSON.stringify(d)))),de=s=>JSON.parse(decodeURIComponent(escape(atob(s.trim()))));
+const st=(m)=>{$('#stt').textContent=m;$('#stt').classList.toggle('ok',m=='Conectado')};
+const gath=()=>new Promise(r=>{if(P.iceGatheringState=='complete')r();else{P.onicegatheringstatechange=()=>P.iceGatheringState=='complete'&&r();setTimeout(r,4000)}});
+function mk(){P=new RTCPeerConnection({iceServers:[{urls:'stun:stun.l.google.com:19302'}]});P.ondatachannel=e=>setCh(e.channel);P.onconnectionstatechange=()=>{if(P.connectionState=='failed'||P.connectionState=='disconnected')st('Desconectado')}}
+$('#go').onclick=async()=>{mk();setCh(P.createDataChannel('m'));await P.setLocalDescription(await P.createOffer());st('Gerando…');await gath();$('#code').value=en(P.localDescription);st('Aguardando o outro aparelho')};
+$('#ok').onclick=async()=>{try{const d=de($('#cin').value);if(d.type=='offer'){mk();await P.setRemoteDescription(d);await P.setLocalDescription(await P.createAnswer());await gath();$('#code').value=en(P.localDescription);st('Devolva o código ao outro aparelho')}else await P.setRemoteDescription(d)}catch(e){toast('Código inválido')}};
+$('#cp').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText($('#code').value);$('#code').select();toast('Código copiado')};
+function setCh(c){ch=c;c.binaryType='arraybuffer';c.onopen=()=>{st('Conectado');toast('Aparelho conectado');man(1);c.send(JSON.stringify({t:'s',c:ST}))};c.onclose=()=>st('Desconectado');c.onmessage=onMsg}
+const man=r=>{if(ch&&ch.readyState=='open')ch.send(JSON.stringify({t:'m',i:T.map(x=>x.k),r}))};
+async function onMsg(e){const d=e.data;
+if(typeof d!='string'){const v=new DataView(d),r=RX[v.getUint32(0)];if(r){r.p.push(d.slice(4));r.g+=d.byteLength-4;toast('Recebendo “'+r.n.replace(/\.[^.]+$/,'')+'” — '+Math.round(r.g/r.s*100)+'%')}return}
+const m=JSON.parse(d);
+if(m.t=='m'){if(m.r)man(0);const out=T.filter(x=>!m.i.includes(x.k));if(out.length)QQ=QQ.then(()=>send(out)).catch(()=>{})}
+else if(m.t=='s'){for(const c in m.c)ST[c]=Math.max(ST[c]||0,m.c[c]);if(view=='cfg')R()}
+else if(m.t=='f')RX[m.id]={n:m.n,s:m.s,p:[],g:0};
+else if(m.t=='e'){const r=RX[m.id];delete RX[m.id];if(r&&r.g==r.s&&await addF([new File(r.p,r.n,{type:'audio/mpeg'})]))toast('Recebida: '+r.n.replace(/\.[^.]+$/,''))}}
+async function send(l){for(const x of l){const id=(Math.random()*4e9)>>>0;ch.send(JSON.stringify({t:'f',id,n:x.name,s:x.size}));
+for(let o=0;o<x.size;o+=16000){while(ch.bufferedAmount>5e5)await new Promise(r=>setTimeout(r,20));const a=await x.blob.slice(o,o+16000).arrayBuffer(),b=new Uint8Array(4+a.byteLength);new DataView(b.buffer).setUint32(0,id);b.set(new Uint8Array(a),4);ch.send(b)}
+ch.send(JSON.stringify({t:'e',id}))}}
+function bindD(){$$('.dvb').forEach(b=>b.onclick=()=>$('#dv').classList.add('on'))}
+$('#x').onclick=()=>$('#dv').classList.remove('on');
+/* início */
+(async()=>{T=await S('t','readonly',s=>s.getAll())||[];ST=await S('m','readonly',s=>s.get('stats'))||{};T.forEach(url);R();bar();DH=await S('m','readonly',s=>s.get('dir'));chk()})();
+</script></body></html>
